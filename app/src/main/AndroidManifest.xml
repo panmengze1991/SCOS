@@ -2,18 +2,35 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="es.source.code">
 
+    <permission
+            android:name="scos.permission.ACCESSSCOS"
+            android:protectionLevel="dangerous"/>
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
+            android:roundIcon="@mipmap/ic_launcher"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+
+        <!-- SCOSEntry -->
         <activity android:name=".activity.SCOSEntry">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!-- MainScreen -->
+        <activity
+                android:name=".activity.MainScreen"
+                android:permission="scos.permission.ACCESSSCOS">
+            <intent-filter>
+                <action android:name="android.intent.action.SCOSMAIN"/>
+
+                <category android:name="android.intent.category.SCOSLAUNCHER"/>
             </intent-filter>
         </activity>
     </application>

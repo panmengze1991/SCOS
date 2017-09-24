@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">SCOS</string>
+    <string name="app_name">阿黄点餐</string>
+
+    <!-- 启动页 -->
+    <string name="toast_welcome">欢迎！</string>
+
+    <!-- 导航页 -->
+    <string name="btn_order">点餐</string>
+    <string name="btn_form">查看订单</string>
+    <string name="btn_account">登录/注册</string>
+    <string name="btn_help">系统帮助</string>
+
 </resources>
