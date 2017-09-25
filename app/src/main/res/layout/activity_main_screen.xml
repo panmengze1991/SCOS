@@ -19,27 +19,27 @@
     <Button
             android:id="@+id/btn_order"
             style="@style/GuideButton"
-            android:text="@string/btn_order"
-            android:drawableLeft="@drawable/ic_order"/>
+            android:text="@string/text_order"
+            android:drawableLeft="@drawable/guide_btn_order_selector"/>
 
     <Button
             android:id="@+id/btn_form"
             style="@style/GuideButton"
-            android:text="@string/btn_form"
-            android:drawableLeft="@drawable/ic_form"/>
+            android:text="@string/text_form"
+            android:drawableLeft="@drawable/guide_btn_form_selector"/>
 
     <Button
             android:id="@+id/btn_account"
             style="@style/GuideButton"
-            android:text="@string/btn_account"
-            android:drawableLeft="@drawable/ic_account"/>
+            android:text="@string/text_account"
+            android:drawableLeft="@drawable/guide_btn_account_selector"/>
 
     <Button
             android:id="@+id/btn_help"
             style="@style/GuideButton"
             android:layout_marginBottom="20dp"
-            android:text="@string/btn_help"
-            android:drawableLeft="@drawable/ic_help"/>
+            android:text="@string/text_help"
+            android:drawableLeft="@drawable/guide_btn_help_selector"/>
 
 
 </LinearLayout>

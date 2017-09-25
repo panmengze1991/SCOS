@@ -33,6 +33,10 @@
                 <category android:name="android.intent.category.SCOSLAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <!-- login UI -->
+        <activity android:name=".activity.LoginOrRegister" android:label="@string/label_account">
+        </activity>
     </application>
 
 </manifest>

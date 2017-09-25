@@ -34,15 +34,18 @@ public class MainScreen extends BaseActivity {
 
     private void initLayout() {
         Intent intent = getIntent();
-        showButtons(Const.INTENT_VALUE_FROM.equals(intent.getStringExtra(Const.INTENT_KEY_FROM)));
+        boolean show = Const.IntentValue.FROM.equals(intent.getStringExtra(Const.IntentKey.FROM))
+                || Const.IntentValue.LOGIN_SUCCESS.equals(intent.getStringExtra(Const.IntentKey
+                .LOGIN_STATUS));
+        showButtons(show);
     }
 
     /**
      * @description: 显示和隐藏按钮
      * @author: Daniel
      */
-    private void showButtons(boolean isFromEntry) {
-        int visible = isFromEntry ? View.VISIBLE : View.GONE;
+    private void showButtons(boolean show) {
+        int visible = show ? View.VISIBLE : View.GONE;
         btnOrder.setVisibility(visible);
         btnForm.setVisibility(visible);
     }
@@ -56,6 +59,7 @@ public class MainScreen extends BaseActivity {
             case R.id.btn_form:
                 break;
             case R.id.btn_account:
+                skipActivity(LoginOrRegister.class);
                 break;
             case R.id.btn_help:
                 break;

@@ -5,9 +5,9 @@
     <color name="colorAccent">#FF4081</color>
 
     <!-- default -->
-    <color name="default_theme_color">#00a8ca</color>
+    <color name="default_theme_color">#1296db</color>
+    <color name="default_theme_color_dark">#0d6694</color>
     <color name="default_text">#777777</color>
     <color name="default_bg">#dddddd</color>
 
-    <!--  -->
 </resources>

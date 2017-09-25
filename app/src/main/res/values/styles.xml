@@ -3,13 +3,36 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/default_theme_color</item>
+        <item name="colorPrimaryDark">@color/default_theme_color_dark</item>
+        <item name="colorAccent">@color/default_theme_color</item>
     </style>
 
-    <style name="GuideButton">
-        <!-- Customize your theme here. -->
+    <!-- 通用按钮 -->
+    <style name="ThemeButton">
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/theme_button_bg_selector</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/text_large_16</item>
+    </style>
+
+    <!-- 导航栏按钮 -->
+    <style name="GuideButton" parent="ThemeButton">
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:drawablePadding">30dp</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:background">@drawable/guide_btn_bg_selector</item>
+        <item name="android:textColor">@drawable/guide_btn_text_selector</item>
+    </style>
+
+    <!-- 通用输入框 -->
+    <style name="ThemeEditText">
         <item name="android:layout_marginLeft">30dp</item>
         <item name="android:layout_marginRight">30dp</item>
         <item name="android:layout_marginTop">20dp</item>
@@ -18,8 +41,7 @@
         <item name="android:drawablePadding">30dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/guide_btn_bg_selector</item>
-        <item name="android:textColor">@drawable/guide_btn_text_selector</item>
+        <item name="android:textColor">@drawable/theme_edit_text_selector</item>
         <item name="android:textSize">@dimen/text_large_16</item>
     </style>
 

@@ -1,6 +1,8 @@
 package es.source.code.activity;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
@@ -20,7 +22,18 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
     }
 
-    public void showToast(String toast){
+    protected void showToast(String toast){
         Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
+    }
+
+    protected void skipActivity(Class activity){
+        Intent intent = new Intent(mContext,activity);
+        startActivity(intent);
+        finish();
+    }
+
+    protected void skipActivity(Intent intent){
+        startActivity(intent);
+        finish();
     }
 }
