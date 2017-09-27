@@ -1,12 +1,15 @@
 package es.source.code.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -42,7 +45,6 @@ public class LoginOrRegister extends BaseActivity {
         ButterKnife.bind(this);
 
         initLayout();
-
     }
 
     private void initLayout() {
@@ -51,21 +53,66 @@ public class LoginOrRegister extends BaseActivity {
         btnLogin.setEnabled(false);
     }
 
-    @OnClick({R.id.btn_login, R.id.btn_back})
-    public void onClick(View view) {
-        Intent intent = new Intent(mContext, MainScreen.class);
-        switch (view.getId()) {
-            case R.id.btn_login:
+//    /**
+//     * @description: 显示加载对话框
+//     * @author: Daniel
+//     */
+//    private void showProgress() {
+//        progressDialog = new ProgressDialog(mContext);
+//        progressDialog.setTitle(getResources().getString(R.string.app_name));
+//        progressDialog.setMessage(getResources().getString(R.string.dialog_login));
+//        progressDialog.setIcon(R.mipmap.ic_launcher);
+//        progressDialog.setCancelable(false);
+//        progressDialog.show();
+//
+//        Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                progressDialog.dismiss();
+//            }
+//        },2000);
+//    }
+
+    /**
+     * @description: 登录
+     * @author: Daniel
+     */
+    private void doLogin() {
+        showProgress();
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dismissProgress();
+                Intent intent = new Intent(mContext, MainScreen.class);
                 intent.putExtra(Const.IntentKey.LOGIN_STATUS, Const.IntentValue.LOGIN_SUCCESS);
                 skipActivity(intent);
+            }
+        }, 2000);
+
+
+    }
+
+    @OnClick({R.id.btn_login, R.id.btn_back})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_login:
+                doLogin();
                 break;
             case R.id.btn_back:
+                Intent intent = new Intent(mContext, MainScreen.class);
                 intent.putExtra(Const.IntentKey.LOGIN_STATUS, Const.IntentValue.LOGIN_RETURN);
                 skipActivity(intent);
                 break;
         }
     }
 
+    /**
+     * @description: 获取字符输入时的监视器
+     * @author: Daniel
+     */
     private TextWatcher getTextWatcher(final EditText editText) {
         TextWatcher textWatcher = new TextWatcher() {
             @Override
@@ -75,14 +122,18 @@ public class LoginOrRegister extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!pattern.matcher(s).matches() || s.length() == 0) {
+                if (!pattern.matcher(s).matches()) {
+                    btnLogin.setEnabled(false);
                     editText.setError(mContext.getResources().getString(R.string
                             .error_account_edit));
+                } else if (etName.getText().toString().trim().length() == 0 ||
+                        etPassword.getText().toString().trim().length() == 0) {
                     btnLogin.setEnabled(false);
                 } else {
                     editText.setError(null);
                     btnLogin.setEnabled(true);
                 }
+
             }
 
             @Override

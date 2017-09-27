@@ -35,7 +35,7 @@
     <style name="ThemeEditText">
         <item name="android:layout_marginLeft">30dp</item>
         <item name="android:layout_marginRight">30dp</item>
-        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginTop">10dp</item>
         <item name="android:padding">14dp</item>
         <item name="android:gravity">left|center_vertical</item>
         <item name="android:drawablePadding">30dp</item>
@@ -43,6 +43,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@drawable/theme_edit_text_selector</item>
         <item name="android:textSize">@dimen/text_large_16</item>
+        <item name="android:singleLine">true</item>
     </style>
 
 </resources>

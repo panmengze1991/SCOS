@@ -11,6 +11,7 @@
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher"
+            android:exported="true"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
 
@@ -25,12 +26,13 @@
 
         <!-- MainScreen -->
         <activity
-                android:name=".activity.MainScreen"
+                android:name="es.source.code.activity.MainScreen"
                 android:permission="scos.permission.ACCESSSCOS">
             <intent-filter>
-                <action android:name="android.intent.action.SCOSMAIN"/>
+                <action android:name="scos.intent.action.SCOSMAIN"/>
+                <category android:name="android.intent.category.DEFAULT"/>
 
-                <category android:name="android.intent.category.SCOSLAUNCHER"/>
+                <category android:name="scos.intent.category.SCOSLAUNCHER"/>
             </intent-filter>
         </activity>
 

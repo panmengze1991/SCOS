@@ -12,8 +12,8 @@ import es.source.code.utils.Const;
 
 public class MainScreen extends BaseActivity {
 
-    private static final int TYPE_SHOW = 1;
-    private static final int TYPE_HIDE = 2;
+//    private static final int TYPE_SHOW = 1;
+//    private static final int TYPE_HIDE = 2;
 
     @BindView(R.id.btn_order)
     Button btnOrder;

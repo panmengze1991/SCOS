@@ -7,6 +7,9 @@
     <string name="label_account">账户</string>
     <string name="label_help">帮助</string>
 
+    <!-- 通用 -->
+    <string name="dialog_loading">载入中&#8230;</string>
+
     <!-- 启动页 -->
     <string name="toast_welcome">欢迎！</string>
 
@@ -22,5 +25,6 @@
     <string name="hint_account_name">请输入用户名</string>
     <string name="hint_account_password">请输入密码</string>
     <string name="error_account_edit">输入内容不符合规则</string>
+    <string name="dialog_login">登录中&#8230;</string>
 
 </resources>
