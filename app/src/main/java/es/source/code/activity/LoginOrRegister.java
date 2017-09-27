@@ -79,8 +79,7 @@ public class LoginOrRegister extends BaseActivity {
      * @author: Daniel
      */
     private void doLogin() {
-        showProgress();
-
+        showProgress(R.string.dialog_login);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -91,8 +90,6 @@ public class LoginOrRegister extends BaseActivity {
                 skipActivity(intent);
             }
         }, 2000);
-
-
     }
 
     @OnClick({R.id.btn_login, R.id.btn_back})

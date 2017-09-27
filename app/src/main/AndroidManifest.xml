@@ -30,8 +30,8 @@
                 android:permission="scos.permission.ACCESSSCOS">
             <intent-filter>
                 <action android:name="scos.intent.action.SCOSMAIN"/>
+                <!-- 不加DEFAULT会有问题 -->
                 <category android:name="android.intent.category.DEFAULT"/>
-
                 <category android:name="scos.intent.category.SCOSLAUNCHER"/>
             </intent-filter>
         </activity>

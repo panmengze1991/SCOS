@@ -32,6 +32,10 @@ public class MainScreen extends BaseActivity {
         initLayout();
     }
 
+    /**
+     * @description: 初始化控件
+     * @author: Daniel
+     */
     private void initLayout() {
         Intent intent = getIntent();
         boolean show = Const.IntentValue.FROM.equals(intent.getStringExtra(Const.IntentKey.FROM))
