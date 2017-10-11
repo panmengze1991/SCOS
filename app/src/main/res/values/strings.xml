@@ -18,13 +18,23 @@
     <string name="text_form">查看订单</string>
     <string name="text_account">登录/注册</string>
     <string name="text_help">系统帮助</string>
+    <string name="toast_new_account">欢迎您成为SCOS新用户</string>
 
     <!-- 注册登录页面 -->
     <string name="text_login">登录</string>
+    <string name="text_register">注册</string>
     <string name="text_back">返回</string>
     <string name="hint_account_name">请输入用户名</string>
     <string name="hint_account_password">请输入密码</string>
     <string name="error_account_edit">输入内容不符合规则</string>
+    <string name="error_account_empty">输入内容不能为空</string>
     <string name="dialog_login">登录中&#8230;</string>
+    <string name="dialog_register">注册中&#8230;</string>
+    <string name="toast_account_not_valid">您的输入内容不规范，请输入英文字母和数字组成的账户名和密码</string>
 
+    <!-- 点餐页面 -->
+    <string name="text_cold_food">冷菜</string>
+    <string name="text_hot_food">热菜</string>
+    <string name="text_sea_food">海鲜</string>
+    <string name="text_drinking">酒水</string>
 </resources>

@@ -10,4 +10,14 @@
     <color name="default_text">#777777</color>
     <color name="default_bg">#dddddd</color>
 
+    <!-- google colors -->
+    <color name="google_blue">#4081F1</color>
+    <color name="google_blue_pressed">#2570f1</color>
+    <color name="google_red">#E5432C</color>
+    <color name="google_red_pressed">#e93218</color>
+    <color name="google_green">#33A955</color>
+    <color name="google_green_pressed">#189b3e</color>
+    <color name="google_yellow">#F0BC04</color>
+    <color name="google_yellow_pressed">#cca003</color>
+
 </resources>

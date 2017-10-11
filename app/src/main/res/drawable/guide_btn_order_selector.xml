@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 图标选择 -->
+<!-- 点餐页按钮背景 -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true" android:drawable="@drawable/ic_order_white"/>
-    <item android:drawable="@drawable/ic_order_blue"/>
+
+    <item android:state_pressed="true">
+        <shape android:shape="oval">
+            <size android:width="20dp" android:height="20dp"/>
+            <solid android:color="@color/google_blue_pressed"/>
+        </shape>
+    </item>
+
+    <item>
+        <shape android:shape="oval">
+            <size android:width="20dp" android:height="20dp"/>
+            <solid android:color="@color/google_blue"/>
+        </shape>
+    </item>
 </selector>

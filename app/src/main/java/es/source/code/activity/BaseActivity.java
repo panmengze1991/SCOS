@@ -30,9 +30,15 @@ public class BaseActivity extends AppCompatActivity {
         Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
     }
 
-    protected void skipActivity(Class activity) {
+    // 打开activity
+    protected  void showActivity(Class activity){
         Intent intent = new Intent(mContext, activity);
         startActivity(intent);
+    }
+
+    // 跳转activity 并关闭当前
+    protected void skipActivity(Class activity) {
+        showActivity(activity);
         finish();
     }
 

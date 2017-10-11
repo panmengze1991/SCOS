@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="es.source.code.activity.FoodView">
+
+    <!-- 顶部tab栏 -->
+    <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:id="@+id/tv_cold_food"
+                android:text="@string/text_cold_food"
+                style="@style/TableButton"/>
+        <TextView
+                android:id="@+id/tv_hot_food"
+                android:text="@string/text_hot_food"
+                style="@style/TableButton"/>
+        <TextView
+                android:id="@+id/tv_sea_food"
+                android:text="@string/text_sea_food"
+                style="@style/TableButton"/>
+        <TextView
+                android:id="@+id/tv_drinking"
+                android:text="@string/text_drinking"
+                style="@style/TableButton"/>
+
+    </TableLayout>
+
+    <android.support.v4.view.ViewPager
+            android:id="@+id/vp_food"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+</LinearLayout>

@@ -33,6 +33,14 @@
                 android:layout_height="wrap_content"/>
 
         <Button
+                android:id="@+id/btn_register"
+                style="@style/ThemeButton"
+                android:text="@string/text_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        <Button
                 android:id="@+id/btn_back"
                 style="@style/ThemeButton"
                 android:text="@string/text_back"

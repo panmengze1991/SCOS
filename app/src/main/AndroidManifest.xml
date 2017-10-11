@@ -8,10 +8,10 @@
 
     <application
             android:allowBackup="true"
+            android:exported="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher"
-            android:exported="true"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
 
@@ -26,7 +26,8 @@
 
         <!-- MainScreen -->
         <activity
-                android:name="es.source.code.activity.MainScreen"
+                android:name=".activity.MainScreen"
+                android:launchMode="singleTop"
                 android:permission="scos.permission.ACCESSSCOS">
             <intent-filter>
                 <action android:name="scos.intent.action.SCOSMAIN"/>
@@ -37,7 +38,14 @@
         </activity>
 
         <!-- login UI -->
-        <activity android:name=".activity.LoginOrRegister" android:label="@string/label_account">
+        <activity
+                android:name=".activity.LoginOrRegister"
+                android:label="@string/label_account">
+        </activity>
+
+        <!-- order UI -->
+        <activity android:name=".activity.FoodView"
+                android:label="@string/label_order">
         </activity>
     </application>
 

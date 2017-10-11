@@ -23,12 +23,12 @@
     </style>
 
     <!-- 导航栏按钮 -->
-    <style name="GuideButton" parent="ThemeButton">
-        <item name="android:layout_marginTop">20dp</item>
-        <item name="android:drawablePadding">30dp</item>
-        <item name="android:gravity">left|center_vertical</item>
-        <item name="android:background">@drawable/guide_btn_bg_selector</item>
-        <item name="android:textColor">@drawable/guide_btn_text_selector</item>
+    <style name="GuideButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingTop">30dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
     <!-- 通用输入框 -->
@@ -44,6 +44,12 @@
         <item name="android:textColor">@drawable/theme_edit_text_selector</item>
         <item name="android:textSize">@dimen/text_large_16</item>
         <item name="android:singleLine">true</item>
+    </style>
+
+    <!-- 通用table按钮 -->
+    <style name="TableButton">
+        <item name="android:background">@drawable/theme_button_bg_selector</item>
+        <item name="android:clickable">true</item>
     </style>
 
 </resources>
