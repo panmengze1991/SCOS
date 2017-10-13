@@ -8,7 +8,12 @@
     <color name="default_theme_color">#1296db</color>
     <color name="default_theme_color_dark">#0d6694</color>
     <color name="default_text">#777777</color>
-    <color name="default_bg">#dddddd</color>
+    <color name="default_bg">#eeeeee</color>
+    <color name="default_divider">#dddddd</color>
+
+    <!-- text color -->
+    <color name="text_black">#444444</color>
+    <color name="text_gray">#999999</color>
 
     <!-- google colors -->
     <color name="google_blue">#4081F1</color>

@@ -14,30 +14,26 @@
             android:orientation="horizontal">
 
         <TextView
-                android:id="@+id/tv_cold_food"
-                android:text="@string/text_cold_food"
+                android:id="@+id/tv_tab_order"
+                android:text="@string/text_tab_order"
                 style="@style/TableButton"/>
 
         <TextView
-                android:id="@+id/tv_hot_food"
-                android:text="@string/text_hot_food"
+                android:id="@+id/tv_tab_bill"
+                android:text="@string/text_tab_bill"
                 style="@style/TableButton"/>
 
-        <TextView
-                android:id="@+id/tv_sea_food"
-                android:text="@string/text_sea_food"
-                style="@style/TableButton"/>
-
-        <TextView
-                android:id="@+id/tv_drinking"
-                android:text="@string/text_drinking"
-                style="@style/TableButton"/>
     </LinearLayout>
 
     <View style="@style/Divider"/>
 
     <android.support.v4.view.ViewPager
-            android:id="@+id/vp_food"
+            android:id="@+id/vp_order"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+    <TextView
+            android:id="@+id/btn_submit"
+            style="@style/BottomButton"/>
 </LinearLayout>

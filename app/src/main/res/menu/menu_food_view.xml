@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="es.source.code.activity.FoodView" >
+
+    <item
+            android:id="@+id/action_order"
+            android:title="@string/menu_order"/>
+    <item
+            android:id="@+id/action_bill"
+            android:title="@string/menu_bill"/>
+    <item
+            android:id="@+id/action_service"
+            android:title="@string/menu_service"/>
+
+</menu>

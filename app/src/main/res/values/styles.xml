@@ -17,7 +17,7 @@
         <item name="android:gravity">center</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/theme_button_bg_selector</item>
+        <item name="android:background">@drawable/theme_button_bg_blue_selector</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/text_large_16</item>
     </style>
@@ -48,8 +48,52 @@
 
     <!-- 通用table按钮 -->
     <style name="TableButton">
-        <item name="android:background">@drawable/theme_button_bg_selector</item>
+        <item name="android:background">@drawable/tab_bg_selector</item>
+        <item name="android:textColor">@drawable/tab_text_selector</item>
         <item name="android:clickable">true</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">14dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- ListItem标题 -->
+    <style name="ItemTitle">
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_large_16</item>
+        <item name="android:padding">4dp</item>
+    </style>
+
+    <!-- ListItem内容 -->
+    <style name="ItemContent">
+        <item name="android:textColor">@color/text_gray</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_middle_14</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
+
+    <!-- 分隔线 -->
+    <style name="Divider">
+        <item name="android:background">@color/default_divider</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+    </style>
+
+    <!-- 底部button -->
+    <style name="BottomButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:clickable">true</item>
+        <item name="android:padding">14dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/btn_bg_blue_selector</item>
+
     </style>
 
 </resources>

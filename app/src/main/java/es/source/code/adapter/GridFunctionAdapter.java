@@ -10,7 +10,8 @@ import android.widget.Button;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.source.code.R;
-import es.source.code.callback.OnFunctionClickListener;
+import es.source.code.callback.OnItemBtnClickListener;
+import es.source.code.model.Food;
 import es.source.code.model.Function;
 
 import java.util.List;
@@ -71,8 +72,8 @@ public class GridFunctionAdapter extends BaseAdapter {
         viewHolder.btnFunction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(onFunctionClickListener !=null){
-                    onFunctionClickListener.onClick(function,position);
+                if(onItemBtnClickListener !=null){
+                    onItemBtnClickListener.onClick(function,position);
                 }
             }
         });
@@ -94,9 +95,9 @@ public class GridFunctionAdapter extends BaseAdapter {
         }
     }
 
-    private OnFunctionClickListener onFunctionClickListener;
+    private OnItemBtnClickListener<Function> onItemBtnClickListener;
 
-    public void setOnFunctionClickListener(OnFunctionClickListener onFunctionClickListener) {
-        this.onFunctionClickListener = onFunctionClickListener;
+    public void setOnItemBtnClickListener(OnItemBtnClickListener<Function> onItemBtnClickListener) {
+        this.onItemBtnClickListener = onItemBtnClickListener;
     }
 }

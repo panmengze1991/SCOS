@@ -6,9 +6,12 @@
     <string name="label_form">订单</string>
     <string name="label_account">账户</string>
     <string name="label_help">帮助</string>
+    <string name="label_custom_order">查看订单</string>
+    <string name="label_food_detail">菜品详情</string>
 
     <!-- 通用 -->
     <string name="dialog_loading">载入中&#8230;</string>
+    <string name="unit_yuan">元</string>
 
     <!-- 启动页 -->
     <string name="toast_welcome">欢迎！</string>
@@ -37,4 +40,22 @@
     <string name="text_hot_food">热菜</string>
     <string name="text_sea_food">海鲜</string>
     <string name="text_drinking">酒水</string>
+    <string name="btn_order">来一份</string>
+    <string name="btn_cancel_order">不点了</string>
+    <string name="menu_order">已点菜品</string>
+    <string name="menu_bill">查看订单</string>
+    <string name="menu_service">呼叫服务</string>
+
+    <!-- 订单页面 -->
+    <string name="text_tab_order">未下菜单</string>
+    <string name="text_tab_bill">已下菜单</string>
+    <string name="btn_submit">提交订单</string>
+    <string name="btn_bill">结账</string>
+    <string name="text_food_amount">菜品总数：</string>
+    <string name="text_order_amount">订单总价：</string>
+    <string name="toast_old_user_bill">您好，老顾客，本次你可享受7折优惠</string>
+
+    <!-- 详情页面 -->
+    <string name="text_remark_hint">请在下方输入备注：</string>
+
 </resources>

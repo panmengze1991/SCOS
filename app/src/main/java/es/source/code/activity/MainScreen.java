@@ -7,7 +7,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.source.code.R;
 import es.source.code.adapter.GridFunctionAdapter;
-import es.source.code.callback.OnFunctionClickListener;
+import es.source.code.callback.OnItemBtnClickListener;
 import es.source.code.model.Function;
 import es.source.code.model.User;
 import es.source.code.utils.Const;
@@ -53,7 +53,7 @@ public class MainScreen extends BaseActivity {
         // 根据intent判断是否显示点餐和订单
         boolean show = Const.IntentValue.FROM.equals(intent.getStringExtra(Const.IntentKey.FROM))
                 || Const.IntentValue.LOGIN_SUCCESS.equals(intent.getStringExtra(Const.IntentKey
-                .LOGIN_STATUS)) || Const.IntentValue.LOGIN_SUCCESS.equals(intent.getStringExtra
+                .LOGIN_STATUS)) || Const.IntentValue.REGISTER_SUCCESS.equals(intent.getStringExtra
                 (Const.IntentKey.LOGIN_STATUS));
         functionList = new ArrayList<>();
 
@@ -80,7 +80,7 @@ public class MainScreen extends BaseActivity {
      */
     private void initLayout() {
         gridFunctionAdapter = new GridFunctionAdapter(functionList, mContext);
-        gridFunctionAdapter.setOnFunctionClickListener(new OnFunctionClickListener() {
+        gridFunctionAdapter.setOnItemBtnClickListener(new OnItemBtnClickListener<Function>() {
             @Override
             public void onClick(Function function, int position) {
                 onFunctionCLick(function.getTag());
@@ -91,15 +91,20 @@ public class MainScreen extends BaseActivity {
 
     public void onFunctionCLick(Const.Resources.FUNCTIONS_TAG functionTag) {
         // TODO: 2017/10/10 跳转页面
+        Intent intent;
         switch (functionTag) {
             case ORDER:
-                showActivity(FoodView.class);
+                intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(Const.ParcelableKey.USER,user);
+                intent.setClass(mContext,FoodView.class).putExtras(bundle);
+                startActivity(intent);
                 break;
             case FORM:
                 break;
             case ACCOUNT:
 //                skipActivity(LoginOrRegister.class);
-                Intent intent = new Intent(mContext, LoginOrRegister.class);
+                intent = new Intent(mContext, LoginOrRegister.class);
                 startActivityForResult(intent, Const.ActivityCode.MAIN_SCREEN);
                 break;
             case HELP:
@@ -115,7 +120,10 @@ public class MainScreen extends BaseActivity {
                 // 登录或注册成功处理。
                 user = (User) intent.getExtras().get(Const.ParcelableKey.USER);
                 if(Const.IntentValue.REGISTER_SUCCESS.equals(intent.getStringExtra(Const.IntentKey.LOGIN_STATUS))){
-                    showToast(getString(R.string.app_name));
+                    showToast(getString(R.string.toast_new_account));
+                    user.setOldUser(false);
+                } else {
+                    user.setOldUser(true);
                 }
                 initList(intent);
                 gridFunctionAdapter.setData(functionList);

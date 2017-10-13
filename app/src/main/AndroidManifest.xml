@@ -7,6 +7,7 @@
             android:protectionLevel="dangerous"/>
 
     <application
+            android:name=".App"
             android:allowBackup="true"
             android:exported="true"
             android:icon="@mipmap/ic_launcher"
@@ -44,8 +45,16 @@
         </activity>
 
         <!-- order UI -->
-        <activity android:name=".activity.FoodView"
+        <activity
+                android:name=".activity.FoodView"
                 android:label="@string/label_order">
+        </activity>
+        <activity
+                android:name=".activity.FoodOrderView"
+                android:label="@string/label_custom_order">
+        </activity>
+        <activity android:name=".activity.FoodDetailed"
+                  android:label="@string/label_food_detail">
         </activity>
     </application>
 

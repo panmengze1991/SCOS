@@ -14,7 +14,7 @@ public class Const {
     public static class IntentKey {
         public static final String FROM = "from";
         public static final String LOGIN_STATUS = "login_status";
-        public static final String USER = "user";
+        public static final String FOOD_POSITION = "food_position";
     }
 
     // IntentValue
@@ -28,6 +28,7 @@ public class Const {
     // ParcelableKey
     public static class ParcelableKey {
         public static final String USER = "user";
+        public static final String FOOD_LIST = "food_list";
     }
 
     // 正则表达式

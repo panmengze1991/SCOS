@@ -5,11 +5,10 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              android:background="@color/google_blue"
               tools:context="es.source.code.activity.FoodView">
 
     <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_food_list"
+            android:id="@+id/rv_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

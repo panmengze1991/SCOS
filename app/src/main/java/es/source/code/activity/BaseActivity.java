@@ -26,6 +26,10 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
     }
 
+    protected void showToast(int toast) {
+        Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
+    }
+
     protected void showToast(String toast) {
         Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
     }
