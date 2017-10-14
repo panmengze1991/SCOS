@@ -64,6 +64,10 @@ public class FoodView extends BaseActivity {
         initView();
     }
 
+    /**
+     * @description: 初始化ViewPager和fragment
+     * @author: Daniel
+     */
     private void initView() {
         currentPageIndex = FRAGMENT_COLD_FOOD;
         ColdFoodFragment coldFoodFragment = new ColdFoodFragment();
@@ -83,7 +87,6 @@ public class FoodView extends BaseActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int
                     positionOffsetPixels) {
-
             }
 
             @Override

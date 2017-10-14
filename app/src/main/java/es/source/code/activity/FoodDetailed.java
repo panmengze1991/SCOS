@@ -84,6 +84,6 @@ public class FoodDetailed extends BaseActivity {
         Food food = foodList.get(currentPageIndex);
         food.setOrder(!food.isOrder());
         loadButton(food);
-        App.getInstantce().operateFoodList(food,food.isOrder());
+        App.getInstance().operateFoodList(food,food.isOrder());
     }
 }

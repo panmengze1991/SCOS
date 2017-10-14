@@ -1,9 +1,7 @@
 package es.source.code.fragment;
 
-import android.view.View;
 import android.widget.TextView;
 import butterknife.BindView;
-import butterknife.OnClick;
 import es.source.code.App;
 import es.source.code.R;
 import es.source.code.adapter.OrderRecyclerAdapter;
@@ -39,7 +37,7 @@ public class CustomOrderFragment extends BaseRecyclerFragment<Food> {
 
     @Override
     protected void initData() {
-        dataList = App.getInstantce().getFoodList();
+        dataList = App.getInstance().getFoodList();
         listAdapter = new OrderRecyclerAdapter(dataList, mContext, R.layout.recycler_item_food);
         listAdapter.setOnItemBtnClickListener(new OnItemBtnClickListener<Food>() {
             @Override

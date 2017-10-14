@@ -46,7 +46,7 @@ public class MainScreen extends BaseActivity {
     }
 
     /**
-     * @description:
+     * @description: 初始化菜单列表
      * @author: Daniel
      */
     private void initList(Intent intent) {
@@ -55,9 +55,10 @@ public class MainScreen extends BaseActivity {
                 || Const.IntentValue.LOGIN_SUCCESS.equals(intent.getStringExtra(Const.IntentKey
                 .LOGIN_STATUS)) || Const.IntentValue.REGISTER_SUCCESS.equals(intent.getStringExtra
                 (Const.IntentKey.LOGIN_STATUS));
+
         functionList = new ArrayList<>();
 
-        if (show && user!=null) {
+        if (show && user != null) {
             functionList.add(new Function(R.drawable.ic_order_white, R.drawable
                     .guide_btn_order_selector, getResources().getString(R
                     .string.label_order), Const.Resources.FUNCTIONS_TAG.ORDER));
@@ -96,8 +97,8 @@ public class MainScreen extends BaseActivity {
             case ORDER:
                 intent = new Intent();
                 Bundle bundle = new Bundle();
-                bundle.putParcelable(Const.ParcelableKey.USER,user);
-                intent.setClass(mContext,FoodView.class).putExtras(bundle);
+                bundle.putParcelable(Const.ParcelableKey.USER, user);
+                intent.setClass(mContext, FoodView.class).putExtras(bundle);
                 startActivity(intent);
                 break;
             case FORM:
@@ -119,7 +120,8 @@ public class MainScreen extends BaseActivity {
             case Const.ActivityCode.LOGIN_OR_REGISTER:
                 // 登录或注册成功处理。
                 user = (User) intent.getExtras().get(Const.ParcelableKey.USER);
-                if(Const.IntentValue.REGISTER_SUCCESS.equals(intent.getStringExtra(Const.IntentKey.LOGIN_STATUS))){
+                if (Const.IntentValue.REGISTER_SUCCESS.equals(intent.getStringExtra(Const
+                        .IntentKey.LOGIN_STATUS))) {
                     showToast(getString(R.string.toast_new_account));
                     user.setOldUser(false);
                 } else {

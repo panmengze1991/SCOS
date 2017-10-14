@@ -36,7 +36,7 @@ public abstract class BaseFoodFragment extends BaseRecyclerFragment<Food> {
             public void onClick(Food food, int position) {
                 food.setOrder(!food.isOrder());
                 listAdapter.updateData(dataList);
-                App.getInstantce().operateFoodList(food,food.isOrder());
+                App.getInstance().operateFoodList(food,food.isOrder());
             }
         });
         listAdapter.setOnItemClickListener(new OnItemClickListener<Food>() {

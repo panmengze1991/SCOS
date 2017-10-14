@@ -75,8 +75,6 @@ public abstract class BaseRecyclerFragment<T> extends BaseFragment {
         rvList.setLayoutManager(layoutManager);
         // 设置adapter
         rvList.setAdapter(listAdapter);
-        // 设置Item之间间隔样式
-        // rvList.addItemDecoration(mDividerItemDecoration);
     }
 
     protected abstract void initLayout();
