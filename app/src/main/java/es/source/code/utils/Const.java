@@ -37,22 +37,43 @@ public class Const {
     // resources
     public static class Resources {
         public enum FUNCTIONS_TAG {
-            ORDER, FORM, ACCOUNT, HELP
+
+            // 首页功能
+            ORDER, FORM, ACCOUNT, HELP,
+
+            // 帮助页功能
+            PROTOCOL, ABOUT, PHONE, MESSAGE, EMAIL
         }
-//
-//        // 功能按钮背景
-//        public static final int[] FUNCTION_BACKGROUND = {R.drawable.guide_btn_order_selector, R
-//                .drawable.guide_btn_form_selector, R.drawable.guide_btn_account_selector, R
-//                .drawable.guide_btn_help_selector};
-//
-//        // 功能按钮图标
-//        public static final int[] FUNCTION_DRAWABLE = {R.drawable.ic_order_white, R.drawable
-//                .ic_form_white, R.drawable.ic_account_white, R.drawable.ic_help_white};
+
     }
 
-    public static class ActivityCode{
+    public static class ActivityCode {
         public static final int MAIN_SCREEN = 1;
         public static final int LOGIN_OR_REGISTER = 2;
+        public static final int SCOS_HELPER = 3;
     }
 
+    // 事件键值
+    public static class EventKey {
+        // 刷新主页导航
+        public static final String REFRESH_FUNCTONS = "refresh_functions";
+
+        // 点击事件
+        public static final String HELP_CLICK = "help_click";
+    }
+
+    // sp的key
+    public static class SharedPreferenceKey {
+        // 资料
+        public static final String PROFILE = "profile";
+        public static final String USER = "user";
+        public static final String LOGIN_STATUS = "login_status";
+    }
+
+    // sp的value
+    public static class SharedPreferenceValue {
+        // 登录状态值
+        public static final int LOGIN_SUCCESS = 1;
+        public static final int LOGIN_FAILED = 0;
+    }
 }

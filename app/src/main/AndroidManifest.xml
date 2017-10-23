@@ -6,6 +6,10 @@
             android:name="scos.permission.ACCESSSCOS"
             android:protectionLevel="dangerous"/>
 
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
             android:name=".App"
             android:allowBackup="true"
@@ -53,8 +57,12 @@
                 android:name=".activity.FoodOrderView"
                 android:label="@string/label_custom_order">
         </activity>
-        <activity android:name=".activity.FoodDetailed"
-                  android:label="@string/label_food_detail">
+        <activity
+                android:name=".activity.FoodDetailed"
+                android:label="@string/label_food_detail">
+        </activity>
+        <activity android:name=".activity.SCOSHelper"
+                android:label="@string/label_help">
         </activity>
     </application>
 

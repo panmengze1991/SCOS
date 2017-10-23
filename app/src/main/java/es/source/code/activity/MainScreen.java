@@ -1,33 +1,42 @@
 package es.source.code.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.GridView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.google.gson.Gson;
+import es.source.code.App;
 import es.source.code.R;
 import es.source.code.adapter.GridFunctionAdapter;
 import es.source.code.callback.OnItemBtnClickListener;
+import es.source.code.callback.SimpleObserver;
+import es.source.code.model.Event;
 import es.source.code.model.Function;
 import es.source.code.model.User;
 import es.source.code.utils.Const;
+import es.source.code.utils.RxBus;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Author        Daniel
+ * Class:        MainScreen
+ * Date:         2017/10/18 19:28
+ * Description:  主导航界面
+ */
 public class MainScreen extends BaseActivity {
 
-//    private static final int TYPE_SHOW = 1;
-//    private static final int TYPE_HIDE = 2;
-
-    //    @BindView(R.id.btn_order)
-//    Button btnOrder;
-//    @BindView(R.id.btn_form)
-//    Button btnForm;
-//    @BindView(R.id.btn_account)
-//    Button btnAccount;
-//    @BindView(R.id.btn_help)
-//    Button btnHelp;
     @BindView(R.id.gv_function)
     GridView gvFunction;
 
@@ -41,46 +50,63 @@ public class MainScreen extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
         ButterKnife.bind(this);
-        initList(getIntent());
         initLayout();
+        initData();
+        initRxBus();
     }
 
     /**
-     * @description: 初始化菜单列表
-     * @author: Daniel
+     * author:      Daniel
+     * description: 初始化数据
      */
-    private void initList(Intent intent) {
-        // 根据intent判断是否显示点餐和订单
-        boolean show = Const.IntentValue.FROM.equals(intent.getStringExtra(Const.IntentKey.FROM))
-                || Const.IntentValue.LOGIN_SUCCESS.equals(intent.getStringExtra(Const.IntentKey
-                .LOGIN_STATUS)) || Const.IntentValue.REGISTER_SUCCESS.equals(intent.getStringExtra
-                (Const.IntentKey.LOGIN_STATUS));
-
+    private void initData() {
         functionList = new ArrayList<>();
 
-        if (show && user != null) {
-            functionList.add(new Function(R.drawable.ic_order_white, R.drawable
-                    .guide_btn_order_selector, getResources().getString(R
-                    .string.label_order), Const.Resources.FUNCTIONS_TAG.ORDER));
-            functionList.add(new Function(R.drawable.ic_form_white, R.drawable
-                    .guide_btn_form_selector, getResources().getString(R
-                    .string.label_form), Const.Resources.FUNCTIONS_TAG.FORM));
-        }
+        Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(@NonNull ObservableEmitter<String> e) throws Exception {
+                user = App.getInstance().getUser();
+                int loginStatus = App.getInstance().getLoginStatus();
 
-        functionList.add(new Function(R.drawable.ic_account_white, R.drawable
-                .guide_btn_account_selector, getResources().getString(R
-                .string.label_account), Const.Resources.FUNCTIONS_TAG.ACCOUNT));
-        functionList.add(new Function(R.drawable.ic_help_white, R.drawable
-                .guide_btn_help_selector, getResources().getString(R
-                .string.label_help), Const.Resources.FUNCTIONS_TAG.HELP));
+//                Intent intent = getIntent();
+                // 根据intent判断是否显示点餐和订单
+//                boolean show = Const.IntentValue.FROM.equals(intent.getStringExtra(Const.IntentKey.FROM)) || Const
+//                        .IntentValue.LOGIN_SUCCESS.equals(intent.getStringExtra(Const.IntentKey.LOGIN_STATUS)) || Const
+//                        .IntentValue.REGISTER_SUCCESS.equals(intent.getStringExtra(Const.IntentKey.LOGIN_STATUS));
+
+                if (loginStatus == 1) {
+                    functionList.add(new Function(R.drawable.ic_order_white, R.drawable.guide_btn_order_selector,
+                            getResources().getString(R.string.label_order), Const.Resources.FUNCTIONS_TAG.ORDER));
+                    functionList.add(new Function(R.drawable.ic_form_white, R.drawable.guide_btn_form_selector,
+                            getResources().getString(R.string.label_form), Const.Resources.FUNCTIONS_TAG.FORM));
+                }
+
+                functionList.add(new Function(R.drawable.ic_account_white, R.drawable
+                        .guide_btn_account_selector, getResources().getString(R
+                        .string.label_account), Const.Resources.FUNCTIONS_TAG.ACCOUNT));
+                functionList.add(new Function(R.drawable.ic_help_white, R.drawable
+                        .guide_btn_help_selector, getResources().getString(R
+                        .string.label_help), Const.Resources.FUNCTIONS_TAG.HELP));
+
+                e.onNext(Const.EventKey.REFRESH_FUNCTONS);
+            }
+        })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SimpleObserver<String>() {
+                    @Override
+                    public void onEvent(String string) {
+                        RxBus.getInstance().post(new Event<>(string));
+                    }
+                });
     }
 
     /**
-     * @description: 初始化控件
-     * @author: Daniel
+     * author:      Daniel
+     * description: 初始化控件
      */
     private void initLayout() {
-        gridFunctionAdapter = new GridFunctionAdapter(functionList, mContext);
+        gridFunctionAdapter = new GridFunctionAdapter(null, mContext);
         gridFunctionAdapter.setOnItemBtnClickListener(new OnItemBtnClickListener<Function>() {
             @Override
             public void onClick(Function function, int position) {
@@ -88,6 +114,30 @@ public class MainScreen extends BaseActivity {
             }
         });
         gvFunction.setAdapter(gridFunctionAdapter);
+    }
+
+    /**
+     * author:      Daniel
+     * description: 刷新控件
+     */
+    private void refreshLayout() {
+        gridFunctionAdapter.setData(functionList);
+        gridFunctionAdapter.notifyDataSetChanged();
+    }
+
+    /**
+     * author:      Daniel
+     * description: 初始化bus
+     */
+    private void initRxBus() {
+        RxBus.getInstance().register().subscribe(new Consumer<Event>() {
+            @Override
+            public void accept(Event event) throws Exception {
+                if (Const.EventKey.REFRESH_FUNCTONS.equals(event.getEventKey())) {
+                    refreshLayout();
+                }
+            }
+        });
     }
 
     public void onFunctionCLick(Const.Resources.FUNCTIONS_TAG functionTag) {
@@ -104,11 +154,11 @@ public class MainScreen extends BaseActivity {
             case FORM:
                 break;
             case ACCOUNT:
-//                skipActivity(LoginOrRegister.class);
                 intent = new Intent(mContext, LoginOrRegister.class);
                 startActivityForResult(intent, Const.ActivityCode.MAIN_SCREEN);
                 break;
             case HELP:
+                showActivity(SCOSHelper.class);
                 break;
         }
     }
@@ -119,17 +169,11 @@ public class MainScreen extends BaseActivity {
         switch (resultCode) {
             case Const.ActivityCode.LOGIN_OR_REGISTER:
                 // 登录或注册成功处理。
-                user = (User) intent.getExtras().get(Const.ParcelableKey.USER);
                 if (Const.IntentValue.REGISTER_SUCCESS.equals(intent.getStringExtra(Const
                         .IntentKey.LOGIN_STATUS))) {
                     showToast(getString(R.string.toast_new_account));
-                    user.setOldUser(false);
-                } else {
-                    user.setOldUser(true);
                 }
-                initList(intent);
-                gridFunctionAdapter.setData(functionList);
-                gridFunctionAdapter.notifyDataSetChanged();
+                initData();
         }
     }
 }

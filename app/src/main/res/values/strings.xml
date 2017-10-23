@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">阿黄点餐</string>
 
     <!-- 各页面标题 -->
@@ -12,6 +12,8 @@
     <!-- 通用 -->
     <string name="dialog_loading">载入中&#8230;</string>
     <string name="unit_yuan">元</string>
+    <string name="btn_confirm">确认</string>
+    <string name="btn_cancel">取消</string>
 
     <!-- 启动页 -->
     <string name="toast_welcome">欢迎！</string>
@@ -54,8 +56,30 @@
     <string name="text_food_amount">菜品总数：</string>
     <string name="text_order_amount">订单总价：</string>
     <string name="toast_old_user_bill">您好，老顾客，本次你可享受7折优惠</string>
+    <string name="toast_pay_success">结账成功！您点了<xliff:g>%1d</xliff:g>道菜，本次消费<xliff:g>%2d</xliff:g>元。</string>
+    <string name="dialog_pay">结账中&#8230;</string>
 
     <!-- 详情页面 -->
     <string name="text_remark_hint">请在下方输入备注：</string>
+
+    <!-- 帮助页面 -->
+    <string name="text_protocol">用户使用协议</string>
+    <string name="text_about">关于系统</string>
+    <string name="text_phone">电话人工帮助</string>
+    <string name="text_message">短信帮助</string>
+    <string name="text_email">邮件帮助</string>
+    <string name="phone_number">5556</string>
+    <string name="alert_phone">拨打电话？</string>
+    <string name="alert_message">发送短信？</string>
+    <string name="alert_email">发送邮件？</string>
+    <string name="sms_help">test scos helper</string>
+    <string name="sms_help_success">求助短信发送成功</string>
+    <string name="email_help_title">求助邮件</string>
+    <string name="email_help_content">这是一封来自客户的求助邮件</string>
+    <string name="email_help_success">求助邮件发送成功</string>
+    <string name="email_help_fail">求助邮件发送失败</string>
+    <string name="email_to">452705789@qq.com</string>
+    <string name="intent_email_name">新的邮件</string>
+
 
 </resources>

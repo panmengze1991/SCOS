@@ -31,7 +31,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected void showToast(String toast) {
-        Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
     }
 
     // 打开activity

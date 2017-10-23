@@ -3,22 +3,29 @@ package es.source.code.activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import es.source.code.App;
 import es.source.code.R;
 import es.source.code.adapter.FragmentViewPagerAdapter;
+import es.source.code.callback.SimpleObserver;
 import es.source.code.fragment.CustomOrderFragment;
 import es.source.code.model.User;
-import es.source.code.utils.Const;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class FoodOrderView extends BaseActivity {
+
+    private static final String TAG = "FoodOrderView";
 
     private static final int FRAGMENT_ORDER = 0;
     private static final int FRAGMENT_BILL = 1;
@@ -27,6 +34,8 @@ public class FoodOrderView extends BaseActivity {
     List<Fragment> fragmentList = new ArrayList<>();
 
     User user;
+
+    boolean isFinish;
 
     @BindView(R.id.tv_tab_order)
     TextView tvTabOrder;
@@ -44,10 +53,12 @@ public class FoodOrderView extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_order_view);
         ButterKnife.bind(this);
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            user = (User) bundle.get(Const.ParcelableKey.USER);
-        }
+//        Bundle bundle = getIntent().getExtras();
+//        if (bundle != null) {
+//            user = (User) bundle.get(Const.ParcelableKey.USER);
+//        }
+        user = App.getInstance().getUser();
+        isFinish = false;
         initView();
     }
 
@@ -94,9 +105,20 @@ public class FoodOrderView extends BaseActivity {
     @OnClick(R.id.btn_submit)
     public void onClick(View submit) {
         if (currentPageIndex == FRAGMENT_BILL) {
-            if (user != null && user.isOldUser()) {
-                showToast(R.string.toast_old_user_bill);
-            }
+            showProgress(R.string.dialog_pay);
+            Observable.timer(6, TimeUnit.SECONDS)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new SimpleObserver<Long>() {
+                        @Override
+                        public void onEvent(Long t) {
+                            dismissProgress();
+                            int amount = App.getInstance().getFoodList().size();
+                            int price = ((CustomOrderFragment) (fragmentList.get(FRAGMENT_BILL))).getPrice();
+                            showToast(getString(R.string.toast_pay_success, amount, price));
+                            isFinish = true;
+                            loadButton();
+                        }
+                    });
         }
     }
 
@@ -115,11 +137,19 @@ public class FoodOrderView extends BaseActivity {
         tab.setSelected(true);
     }
 
+    /**
+     * author:      Daniel
+     * description: 设置按钮
+     */
     private void loadButton() {
         // 设置按钮文字
-        btnSubmit.setText(currentPageIndex == FRAGMENT_ORDER ? R.string.btn_submit : R.string
-                .btn_bill);
-        btnSubmit.setBackgroundResource(currentPageIndex == FRAGMENT_ORDER ? R.drawable
-                .btn_bg_blue_selector : R.drawable.btn_bg_green_selector);
+        btnSubmit.setText(currentPageIndex == FRAGMENT_ORDER ? R.string.btn_submit : R.string.btn_bill);
+
+        // 背景
+        btnSubmit.setBackgroundResource(currentPageIndex == FRAGMENT_ORDER ? R.drawable.btn_bg_blue_selector : R
+                .drawable.btn_bg_green_selector);
+
+        // 设置是否可点击
+        btnSubmit.setEnabled(!(currentPageIndex == FRAGMENT_BILL && isFinish));
     }
 }

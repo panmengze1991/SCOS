@@ -25,6 +25,7 @@ public class CustomOrderFragment extends BaseRecyclerFragment<Food> {
     TextView tvOrderAmount;
 
     private int status;
+    private int amount;
 
     public void setStatus(int status) {
         this.status = status;
@@ -53,13 +54,21 @@ public class CustomOrderFragment extends BaseRecyclerFragment<Food> {
 
     private void updateCount() {
         String foodAmount = getString(R.string.text_food_amount) + String.valueOf(dataList.size());
-        int amount = 0; // 订单总价
+        amount = 0; // 订单总价
         for (Food food : dataList) {
             amount += food.getPrice();
         }
         String orderAmount = getString(R.string.text_order_amount) + String.valueOf(amount);
         tvFoodAmount.setText(foodAmount);
         tvOrderAmount.setText(orderAmount);
+    }
+    
+    /**
+     * author:      Daniel
+     * description: 获得总价格。
+     */
+    public int getPrice(){
+        return amount;
     }
 
 }
