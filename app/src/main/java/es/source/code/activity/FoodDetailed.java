@@ -42,7 +42,7 @@ public class FoodDetailed extends BaseActivity {
         Intent intent = getIntent();
         currentPageIndex = intent.getIntExtra(Const.IntentKey.FOOD_POSITION, 0);
         Bundle bundle = intent.getExtras();
-        foodList = bundle.getParcelableArrayList(Const.ParcelableKey.FOOD_LIST);
+        foodList = bundle.getParcelableArrayList(Const.BundleKey.FOOD_LIST);
         foodDetailPageAdapter = new FoodDetailPageAdapter(foodList, R.layout.layout_food_detail,
                 mContext);
         vpFoodDetail.setAdapter(foodDetailPageAdapter);
@@ -74,9 +74,12 @@ public class FoodDetailed extends BaseActivity {
      * @author: Daniel
      */
     private void loadButton(Food food) {
-        btnOrder.setText(food.isOrder() ? R.string.btn_cancel_order : R.string.btn_order);
-        btnOrder.setBackgroundResource(food.isOrder() ? R.drawable.btn_bg_red_selector : R
-                .drawable.btn_bg_blue_selector);
+        btnOrder.setText(food.isOrder() ? R.string.btn_cancel_order : food.getStore() > 0 ? R.string.btn_order : R
+                .string.btn_empty);
+        btnOrder.setBackgroundResource(food.isOrder() ? R.drawable.theme_button_bg_red_selector :
+                R.drawable.theme_button_bg_blue_selector);
+        // 已点或有库存时都是可以点击的。
+        btnOrder.setEnabled(food.getStore() > 0 || food.isOrder());
     }
 
     @OnClick(R.id.btn_order)

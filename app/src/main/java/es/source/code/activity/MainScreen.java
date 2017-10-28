@@ -1,13 +1,10 @@
 package es.source.code.activity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.GridView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.google.gson.Gson;
 import es.source.code.App;
 import es.source.code.R;
 import es.source.code.adapter.GridFunctionAdapter;
@@ -74,12 +71,12 @@ public class MainScreen extends BaseActivity {
 //                        .IntentValue.LOGIN_SUCCESS.equals(intent.getStringExtra(Const.IntentKey.LOGIN_STATUS)) || Const
 //                        .IntentValue.REGISTER_SUCCESS.equals(intent.getStringExtra(Const.IntentKey.LOGIN_STATUS));
 
-                if (loginStatus == 1) {
+//                if (loginStatus == 1) {
                     functionList.add(new Function(R.drawable.ic_order_white, R.drawable.guide_btn_order_selector,
                             getResources().getString(R.string.label_order), Const.Resources.FUNCTIONS_TAG.ORDER));
                     functionList.add(new Function(R.drawable.ic_form_white, R.drawable.guide_btn_form_selector,
                             getResources().getString(R.string.label_form), Const.Resources.FUNCTIONS_TAG.FORM));
-                }
+//                }
 
                 functionList.add(new Function(R.drawable.ic_account_white, R.drawable
                         .guide_btn_account_selector, getResources().getString(R
@@ -147,7 +144,7 @@ public class MainScreen extends BaseActivity {
             case ORDER:
                 intent = new Intent();
                 Bundle bundle = new Bundle();
-                bundle.putParcelable(Const.ParcelableKey.USER, user);
+                bundle.putParcelable(Const.BundleKey.USER, user);
                 intent.setClass(mContext, FoodView.class).putExtras(bundle);
                 startActivity(intent);
                 break;

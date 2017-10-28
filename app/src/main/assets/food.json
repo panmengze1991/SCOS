@@ -1,0 +1,227 @@
+{
+  "coldFoodList": [
+    {
+      "foodName": "椒油素鸡",
+      "imgId": 2130837593,
+      "order": false,
+      "price": 10,
+      "store": 1
+    },
+    {
+      "foodName": "开胃泡菜",
+      "imgId": 2130837595,
+      "order": false,
+      "price": 12,
+      "store": 1
+    },
+    {
+      "foodName": "凉拌海带丝",
+      "imgId": 2130837596,
+      "order": false,
+      "price": 10,
+      "store": 1
+    },
+    {
+      "foodName": "凉拌黄瓜",
+      "imgId": 2130837597,
+      "order": false,
+      "price": 10,
+      "store": 1
+    },
+    {
+      "foodName": "卤牛肉",
+      "imgId": 2130837598,
+      "order": false,
+      "price": 30,
+      "store": 1
+    },
+    {
+      "foodName": "东北家拌凉菜",
+      "imgId": 2130837592,
+      "order": false,
+      "price": 20,
+      "store": 1
+    },
+    {
+      "foodName": "浇汁豆腐",
+      "imgId": 2130837594,
+      "order": false,
+      "price": 15,
+      "store": 1
+    },
+    {
+      "foodName": "青椒拌干丝",
+      "imgId": 2130837599,
+      "order": false,
+      "price": 10,
+      "store": 1
+    }
+  ],
+  "drinkingList": [
+    {
+      "foodName": "百香多多",
+      "imgId": 2130837600,
+      "order": false,
+      "price": 20,
+      "store": 1
+    },
+    {
+      "foodName": "草莓香蕉奶昔",
+      "imgId": 2130837601,
+      "order": false,
+      "price": 18,
+      "store": 1
+    },
+    {
+      "foodName": "红茶",
+      "imgId": 2130837602,
+      "order": false,
+      "price": 10,
+      "store": 1
+    },
+    {
+      "foodName": "红枣核桃山药饮",
+      "imgId": 2130837603,
+      "order": false,
+      "price": 15,
+      "store": 1
+    },
+    {
+      "foodName": "玫瑰情人露",
+      "imgId": 2130837604,
+      "order": false,
+      "price": 22,
+      "store": 1
+    }
+  ],
+  "hotFoodList": [
+    {
+      "foodName": "干煸豆角",
+      "imgId": 2130837605,
+      "order": false,
+      "price": 20,
+      "store": 1
+    },
+    {
+      "foodName": "宫保鸡丁",
+      "imgId": 2130837606,
+      "order": false,
+      "price": 30,
+      "store": 1
+    },
+    {
+      "foodName": "红烧茄子",
+      "imgId": 2130837607,
+      "order": false,
+      "price": 20,
+      "store": 1
+    },
+    {
+      "foodName": "红烧肉",
+      "imgId": 2130837608,
+      "order": false,
+      "price": 45,
+      "store": 1
+    },
+    {
+      "foodName": "红烧鱼",
+      "imgId": 2130837609,
+      "order": false,
+      "price": 40,
+      "store": 1
+    },
+    {
+      "foodName": "可乐鸡翅",
+      "imgId": 2130837610,
+      "order": false,
+      "price": 30,
+      "store": 1
+    },
+    {
+      "foodName": "麻婆豆腐",
+      "imgId": 2130837611,
+      "order": false,
+      "price": 25,
+      "store": 1
+    },
+    {
+      "foodName": "羊肉汤",
+      "imgId": 2130837612,
+      "order": false,
+      "price": 40,
+      "store": 1
+    },
+    {
+      "foodName": "孜然羊肉",
+      "imgId": 2130837613,
+      "order": false,
+      "price": 50,
+      "store": 1
+    }
+  ],
+  "seaFoodList": [
+    {
+      "foodName": "大虾两吃",
+      "imgId": 2130837614,
+      "order": false,
+      "price": 50,
+      "store": 1
+    },
+    {
+      "foodName": "海螺炒韭菜",
+      "imgId": 2130837615,
+      "order": false,
+      "price": 40,
+      "store": 1
+    },
+    {
+      "foodName": "海鲜汤",
+      "imgId": 2130837616,
+      "order": false,
+      "price": 40,
+      "store": 1
+    },
+    {
+      "foodName": "节瓜章鱼鸡脚汤",
+      "imgId": 2130837617,
+      "order": false,
+      "price": 55,
+      "store": 1
+    },
+    {
+      "foodName": "麻辣小龙虾",
+      "imgId": 2130837618,
+      "order": false,
+      "price": 50,
+      "store": 1
+    },
+    {
+      "foodName": "啤酒海螺",
+      "imgId": 2130837619,
+      "order": false,
+      "price": 40,
+      "store": 1
+    },
+    {
+      "foodName": "清炒虾仁",
+      "imgId": 2130837620,
+      "order": false,
+      "price": 44,
+      "store": 1
+    },
+    {
+      "foodName": "清蒸梭子蟹",
+      "imgId": 2130837621,
+      "order": false,
+      "price": 60,
+      "store": 1
+    },
+    {
+      "foodName": "水蟹冬瓜汤",
+      "imgId": 2130837622,
+      "order": false,
+      "price": 60,
+      "store": 1
+    }
+  ]
+}

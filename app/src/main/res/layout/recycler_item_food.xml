@@ -36,6 +36,10 @@
                     style="@style/ItemTitle"/>
 
             <TextView
+                    android:id="@+id/tv_food_store"
+                    style="@style/ItemContent"/>
+
+            <TextView
                     android:id="@+id/tv_food_price"
                     style="@style/ItemContent"/>
 

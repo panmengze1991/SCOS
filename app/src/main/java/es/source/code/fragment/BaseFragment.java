@@ -16,7 +16,7 @@ import android.view.View;
  */
 public class BaseFragment extends Fragment {
     protected View contentView;
-    protected String TAG = getClass().getSimpleName();
+    protected String TAG = "BaseFragment";
     protected Context mContext;
     protected Activity activity;
 

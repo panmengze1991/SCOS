@@ -3,11 +3,16 @@ package es.source.code;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import com.ddmeng.preferencesprovider.provider.PreferencesStorageModule;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import es.source.code.model.Food;
+import es.source.code.model.FoodCollection;
 import es.source.code.model.User;
+import es.source.code.utils.CommonUtil;
 import es.source.code.utils.Const;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +25,10 @@ import java.util.List;
 public class App extends Application {
     private static App app;
 
-    private List<Food> foodList;
+//    private List<Food> foodList;
+//    private FoodCollection foodCollection;
+
+    PreferencesStorageModule foodModule;
 
     @Override
     public void onCreate() {
@@ -33,15 +41,23 @@ public class App extends Application {
         return app;
     }
 
-    public List<Food> getFoodList() {
-        if (foodList == null) {
-            foodList = new ArrayList<>();
+    public PreferencesStorageModule getFoodModule() {
+        if (foodModule == null) {
+            foodModule = new PreferencesStorageModule(this, Const.Module.FOOD_MODULE);
         }
-        return foodList;
+        return foodModule;
+    }
+
+    public List<Food> getFoodList() {
+        String foodListString = getFoodModule().getString(Const.Module.FOOD_LIST, "");
+        Type type = new TypeToken<ArrayList<Food>>() {
+        }.getType();
+        return new Gson().fromJson(foodListString, type);
     }
 
     public void setFoodList(List<Food> foodList) {
-        this.foodList = foodList;
+        String foodListString = new Gson().toJson(foodList);
+        getFoodModule().put(Const.Module.FOOD_LIST, foodListString);
     }
 
     /**
@@ -49,14 +65,26 @@ public class App extends Application {
      * @author: Daniel
      */
     public void operateFoodList(Food food, boolean isAdd) {
+        List<Food> foodList = getFoodList();
+        boolean add = true;
         if (foodList == null) {
             foodList = new ArrayList<>();
         }
-        if (isAdd && foodList.indexOf(food) == -1) {
-            foodList.add(food);
-        } else if (!isAdd && foodList.indexOf(food) > -1) {
-            foodList.remove(food);
+        for (Food orderFood : foodList) {
+            if (orderFood.getFoodName().equals(food.getFoodName())) {
+                if (isAdd) {
+                    // 避免重复添加
+                    add = false;
+                } else {
+                    foodList.remove(orderFood);
+                }
+                break;
+            }
         }
+        if (isAdd && add) {
+            foodList.add(food);
+        }
+        setFoodList(foodList);
     }
 
     /**
@@ -98,5 +126,15 @@ public class App extends Application {
         SharedPreferences sp = getSharedPreferences(Const.SharedPreferenceKey.PROFILE, Context.MODE_PRIVATE);
         sp.edit().putInt(Const.SharedPreferenceKey.LOGIN_STATUS, loginStatus).apply();
         return getInstance();
+    }
+
+    /**
+     * author:      Daniel
+     * description: 获取食物列表
+     */
+    public FoodCollection getFoodCollection() {
+        Gson gson = new Gson();
+        String foodJsonString = CommonUtil.getJsonFromFile("food.json", getInstance());
+        return gson.fromJson(foodJsonString, FoodCollection.class);
     }
 }

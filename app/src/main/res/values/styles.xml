@@ -77,6 +77,16 @@
         <item name="android:paddingBottom">4dp</item>
     </style>
 
+    <!--&lt;!&ndash; 食物价格 &ndash;&gt;-->
+    <!--<style name="FoodPrice" parent="ItemContent">-->
+        <!--<item name="android:textColor">@color/google_red</item>-->
+    <!--</style>-->
+
+    <!--&lt;!&ndash; 食物存量 &ndash;&gt;-->
+    <!--<style name="FoodStore" parent="ItemContent">-->
+        <!--<item name="android:textColor">@color/google_blue</item>-->
+    <!--</style>-->
+
     <!-- 分隔线 -->
     <style name="Divider">
         <item name="android:background">@color/default_divider</item>

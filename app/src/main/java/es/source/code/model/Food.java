@@ -17,15 +17,19 @@ public class Food implements Parcelable {
     // 价格
     private int price;
 
-    // 是否
+    // 库存;
+    private int store;
+
+    // 是否点单
     private boolean order;
 
     // 图片资源ID;
     private int imgId;
 
-    public Food(String foodName, int price, boolean order, int imgId) {
+    public Food(String foodName, int price, int store, boolean order, int imgId) {
         this.foodName = foodName;
         this.price = price;
+        this.store = store;
         this.order = order;
         this.imgId = imgId;
     }
@@ -62,6 +66,14 @@ public class Food implements Parcelable {
         this.imgId = imgId;
     }
 
+    public int getStore() {
+        return store;
+    }
+
+    public void setStore(int store) {
+        this.store = store;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -71,6 +83,7 @@ public class Food implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.foodName);
         dest.writeInt(this.price);
+        dest.writeInt(this.store);
         dest.writeByte(this.order ? (byte) 1 : (byte) 0);
         dest.writeInt(this.imgId);
     }
@@ -78,6 +91,7 @@ public class Food implements Parcelable {
     protected Food(Parcel in) {
         this.foodName = in.readString();
         this.price = in.readInt();
+        this.store = in.readInt();
         this.order = in.readByte() != 0;
         this.imgId = in.readInt();
     }

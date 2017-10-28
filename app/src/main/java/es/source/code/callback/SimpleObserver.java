@@ -1,5 +1,6 @@
 package es.source.code.callback;
 
+import android.util.Log;
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
@@ -23,12 +24,12 @@ public abstract class SimpleObserver<T> implements Observer<T> {
 
     @Override
     public void onError(@NonNull Throwable e) {
-
+        Log.d("SimpleObserver","onError");
     }
 
     @Override
     public void onComplete() {
-
+        Log.d("SimpleObserver","onComplete");
     }
 
     public abstract void onEvent(T t);

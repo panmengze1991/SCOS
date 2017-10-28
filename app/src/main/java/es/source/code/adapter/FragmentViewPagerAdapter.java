@@ -16,9 +16,9 @@ import java.util.List;
  * @Description: TODO(ViewPage+Fragment 切换适配器)
  * @date 2016-1-18 上午9:31:38
  */
-public class FragmentViewPagerAdapter extends PagerAdapter implements ViewPager
+public class FragmentViewPagerAdapter<T extends Fragment> extends PagerAdapter implements ViewPager
         .OnPageChangeListener {
-    private List<Fragment> fragments; // 每个Fragment对应一个Page
+    private List<T> fragments; // 每个Fragment对应一个Page
     private FragmentManager fragmentManager;
     private ViewPager viewPager; // viewPager对象
     private int currentPageIndex = 0; // 当前page索引（切换之前）
@@ -26,7 +26,7 @@ public class FragmentViewPagerAdapter extends PagerAdapter implements ViewPager
     private OnExtraPageChangeListener onExtraPageChangeListener; // ViewPager切换页面时的额外功能添加接口
 
     public FragmentViewPagerAdapter(FragmentManager fragmentManager, ViewPager viewPager,
-                                    List<Fragment> fragments) {
+                                    List<T> fragments) {
         this.fragments = fragments;
         this.fragmentManager = fragmentManager;
         this.viewPager = viewPager;

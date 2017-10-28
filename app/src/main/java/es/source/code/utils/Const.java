@@ -25,10 +25,17 @@ public class Const {
         public static final String LOGIN_RETURN = "Return";
     }
 
-    // ParcelableKey
-    public static class ParcelableKey {
+    // IntentAction
+    public static class IntentAction {
+        // 开机action
+        public static final String BOOT = "android.intent.action.BOOT_COMPLETED";
+    }
+
+    // BundleKey
+    public static class BundleKey {
         public static final String USER = "user";
         public static final String FOOD_LIST = "food_list";
+        public static final String FOOD_COLLECTION = "food_collection";
     }
 
     // 正则表达式
@@ -60,6 +67,11 @@ public class Const {
 
         // 点击事件
         public static final String HELP_CLICK = "help_click";
+
+        // 传入handler的msg.what，开关自动刷新
+        public static final int MSG_FOOD_GET_START = 1;
+        public static final int MSG_FOOD_GET_STOP = 0;
+        public static final int MSG_FOOD_GET_SUCCESS = 10;
     }
 
     // sp的key
@@ -68,6 +80,13 @@ public class Const {
         public static final String PROFILE = "profile";
         public static final String USER = "user";
         public static final String LOGIN_STATUS = "login_status";
+    }
+
+    public static class Module{
+        // module名
+        public static final String FOOD_MODULE = "food_module";
+        // 已点餐列表
+        public static final String FOOD_LIST = "food_list";
     }
 
     // sp的value

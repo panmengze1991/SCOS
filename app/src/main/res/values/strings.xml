@@ -44,9 +44,12 @@
     <string name="text_drinking">酒水</string>
     <string name="btn_order">来一份</string>
     <string name="btn_cancel_order">不点了</string>
+    <string name="btn_empty">已售完</string>
     <string name="menu_order">已点菜品</string>
     <string name="menu_bill">查看订单</string>
     <string name="menu_service">呼叫服务</string>
+    <string name="menu_auto_refresh_on">启动实时更新</string>
+    <string name="menu_auto_refresh_off">关闭实时更新</string>
 
     <!-- 订单页面 -->
     <string name="text_tab_order">未下菜单</string>
@@ -81,5 +84,8 @@
     <string name="email_to">452705789@qq.com</string>
     <string name="intent_email_name">新的邮件</string>
 
+    <!-- 更新通知 -->
+    <string name="notify_new_food_title">新品上架</string>
+    <string name="notify_new_food_content"><xliff:g>%1s</xliff:g> 价格：<xliff:g>%2s</xliff:g>元  热菜</string>
 
 </resources>

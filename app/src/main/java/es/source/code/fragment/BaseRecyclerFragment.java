@@ -28,8 +28,18 @@ public abstract class BaseRecyclerFragment<T> extends BaseFragment {
     protected LayoutInflater inflater;
     protected ViewGroup container;
 
+    protected String TAG = "BaseRecyclerFragment";
+
     @BindView(R.id.rv_list)
     RecyclerView rvList;
+
+    public List<T> getDataList() {
+        return dataList;
+    }
+
+    public void setDataList(List<T> dataList) {
+        this.dataList = dataList;
+    }
 
     List<T> dataList = new ArrayList<>();
 
@@ -88,5 +98,9 @@ public abstract class BaseRecyclerFragment<T> extends BaseFragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    protected void refreshRecyclerView(){
+        listAdapter.updateData(dataList);
     }
 }

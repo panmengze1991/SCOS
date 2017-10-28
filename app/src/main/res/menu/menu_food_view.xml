@@ -12,5 +12,8 @@
     <item
             android:id="@+id/action_service"
             android:title="@string/menu_service"/>
+    <item
+            android:id="@+id/action_auto_refresh"
+            android:title="@string/menu_auto_refresh_on"/>
 
 </menu>
