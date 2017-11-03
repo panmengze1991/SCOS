@@ -7,11 +7,10 @@ import android.content.res.AssetManager;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import es.source.code.R;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.List;
 
 /**
@@ -21,6 +20,8 @@ import java.util.List;
  * Description:  通用工具
  */
 public class CommonUtil {
+
+    private static final String TAG = "CommonUtil";
 
     /**
      * author:      Daniel
@@ -70,5 +71,29 @@ public class CommonUtil {
         ForegroundColorSpan priceSpan = new ForegroundColorSpan(mContext.getResources().getColor(color));
         priceBuilder.setSpan(priceSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         return priceBuilder;
+    }
+
+    /**
+     * 将输入流转换成字符串
+     *
+     * @param is 从网络获取的输入流
+     * @return
+     */
+    public static String streamToString(InputStream is) {
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+            int len = 0;
+            while ((len = is.read(buffer)) != -1) {
+                baos.write(buffer, 0, len);
+            }
+            baos.close();
+            is.close();
+            byte[] byteArray = baos.toByteArray();
+            return new String(byteArray);
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+            return null;
+        }
     }
 }

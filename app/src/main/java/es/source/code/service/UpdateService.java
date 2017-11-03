@@ -76,7 +76,6 @@ public class UpdateService extends IntentService {
      * description: 发通知
      */
     private void sendNotification(Food food, PendingIntent intent) {
-//        String content = food.getFoodName() + " 价格：" + String.valueOf(food.getPrice()) + "元  热菜";
         String price = String.valueOf(food.getPrice());
         String content = getString(R.string.notify_new_food_content, food.getFoodName(), price);
         Bitmap foodBitMap = BitmapFactory.decodeResource(getResources(), food.getImgId(), new BitmapFactory.Options());

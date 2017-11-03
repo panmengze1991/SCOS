@@ -83,10 +83,10 @@ public class FoodDetailed extends BaseActivity {
     }
 
     @OnClick(R.id.btn_order)
-    public void onClick(View v){
+    public void onClick(View v) {
         Food food = foodList.get(currentPageIndex);
         food.setOrder(!food.isOrder());
         loadButton(food);
-        App.getInstance().operateFoodList(food,food.isOrder());
+        App.getInstance().operateFoodList(food, food.isOrder());
     }
 }

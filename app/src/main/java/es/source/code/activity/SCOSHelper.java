@@ -14,6 +14,9 @@ import android.widget.GridView;
 import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
+import de.greenrobot.event.Subscribe;
+import de.greenrobot.event.ThreadMode;
 import es.source.code.R;
 import es.source.code.adapter.GridHelpAdapter;
 import es.source.code.callback.SimpleObserver;
@@ -59,8 +62,8 @@ public class SCOSHelper extends BaseActivity {
         ButterKnife.bind(this);
         initData();
         initView();
+        initListener();
     }
-
 
     private void initData() {
         functionList = new ArrayList<>();
@@ -97,6 +100,20 @@ public class SCOSHelper extends BaseActivity {
                 }
             }
         });
+    }
+
+    /**
+     * author:      Daniel
+     * description: 注册EventBus
+     */
+    private void initListener() {
+        EventBus.getDefault().register(mContext);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(mContext);
     }
 
     /**
@@ -153,6 +170,7 @@ public class SCOSHelper extends BaseActivity {
                 showToast(R.string.sms_help_success);
                 break;
             case EMAIL:
+//                mailThread.start();
                 Observable.create(new ObservableOnSubscribe<String>() {
                     @Override
                     public void subscribe(@NonNull ObservableEmitter<String> emitter) throws Exception {
@@ -177,16 +195,30 @@ public class SCOSHelper extends BaseActivity {
         }
     }
 
-//    Thread mailThread = new Thread(new Runnable() {
-//        @Override
-//        public void run() {
-//            try {
-//                sendMail();
-//            } catch (EmailException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    });
+    // 发邮件线程
+    Thread mailThread = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            try {
+                sendMail();
+                EventBus.getDefault().post(new Event<>(Const.EventKey.HELP_CLICK,true));
+            } catch (EmailException e) {
+                e.printStackTrace();
+                EventBus.getDefault().post(new Event<>(Const.EventKey.HELP_CLICK,false));
+            }
+        }
+    });
+
+    //主线程执行订阅
+    @Subscribe(threadMode = ThreadMode.MainThread)
+    public void onMailSend(Event<Boolean> event){
+        if(event.getEventData()){
+            showToast(R.string.email_help_success);
+        } else {
+            showToast(R.string.email_help_fail);
+        }
+
+    }
 
     /**
      * author:      Daniel

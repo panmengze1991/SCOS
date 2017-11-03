@@ -21,8 +21,6 @@ public class BaseActivity extends AppCompatActivity {
     Context mContext = this;
     ProgressDialog progressDialog;
 
-    protected String TAG = "BaseActivity";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

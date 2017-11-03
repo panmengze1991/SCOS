@@ -135,7 +135,6 @@ public class FoodView extends BaseActivity {
         Observable.create(new ObservableOnSubscribe<FoodCollection>() {
             @Override
             public void subscribe(@NonNull ObservableEmitter<FoodCollection> e) throws Exception {
-//                FoodCollection foodCollection = App.getInstance().getFoodCollection();
                 e.onNext(foodCollection);
             }
         })
@@ -269,7 +268,6 @@ public class FoodView extends BaseActivity {
             // 标题设置为关闭
             title = getString(R.string.menu_auto_refresh_off);
             // 开启动作
-//            Log.d(TAG,"App.getInstance().getFoodList().size ?" +(App.getInstance().getFoodList().size()));
             what = Const.EventKey.MSG_FOOD_GET_START;
         } else {
             // 标题设置为开启
@@ -290,7 +288,7 @@ public class FoodView extends BaseActivity {
     }
 
 
-    // messenger初始化
+    // handler初始化
     SMessageHandler sMessageHandler = new SMessageHandler(FoodView.this);
 
     /**
@@ -314,14 +312,9 @@ public class FoodView extends BaseActivity {
             switch (msg.what) {
                 case Const.EventKey.MSG_FOOD_GET_SUCCESS:
                     Bundle bundle = msg.getData();
-//                    Log.d(TAG, "bundleget == null ?" + (bundle.get(Const.BundleKey.FOOD_COLLECTION) == null));
-//                    FoodCollection foodCollection = bundle.getParcelable(Const.ParcelableKey.FOOD_COLLECTION);
                     String foodCollectionString = bundle.getString(Const.BundleKey.FOOD_COLLECTION);
                     FoodCollection foodCollection = new Gson().fromJson(foodCollectionString, FoodCollection.class);
-
-//                    foodView.showToast("成功！");
-//                    Log.d(TAG, "读取成功！库存为" + foodCollection.getColdFoodList().get(0).getStore());
-                    loadData(foodCollection);
+                    foodView.loadData(foodCollection);
                     break;
             }
         }

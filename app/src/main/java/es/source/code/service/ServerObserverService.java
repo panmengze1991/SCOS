@@ -100,8 +100,12 @@ public class ServerObserverService extends Service {
         }
     }
 
+    /**
+     * author:      Daniel
+     * description: 获取事件生成器
+     */
     private Observable<FoodCollection> getFoodObservable() {
-        return Observable.interval(1000, TimeUnit.MILLISECONDS)
+        return Observable.interval(300, TimeUnit.MILLISECONDS)
 //                .subscribeOn(Schedulers.newThread())
 //                .doOnSubscribe(new Consumer<Disposable>() {
 //                    @Override
@@ -124,26 +128,6 @@ public class ServerObserverService extends Service {
 //                    }
 //                })
 //                .subscribeOn(Schedulers.io())
-//                .flatMap(new Function<Long, ObservableSource<FoodCollection>>() {
-//                    @Override
-//                    public ObservableSource<FoodCollection> apply(@NonNull Long aLong) throws Exception {
-//                        return Observable.create(new ObservableOnSubscribe<FoodCollection>() {
-//                            @Override
-//                            public void subscribe(@NonNull ObservableEmitter<FoodCollection> e) throws Exception {
-//                                // 开始文件处理
-//                                FoodCollection foodCollection = App.getInstance().getFoodCollection();
-//                                Log.d(TAG,"取到数据");
-//
-//                                Log.d(TAG,"修改数据 start");
-//                                setFoodStoreAmount(foodCollection.getColdFoodList());
-//                                setFoodStoreAmount(foodCollection.getHotFoodList());
-//                                setFoodStoreAmount(foodCollection.getSeaFoodList());
-//                                setFoodStoreAmount(foodCollection.getDrinkingList());
-//                                Log.d(TAG,"修改数据 end");
-//                            }
-//                        });
-//                    }
-//                })
                 .filter(new Predicate<Long>() {
                     @Override
                     public boolean test(@NonNull Long aLong) throws Exception {

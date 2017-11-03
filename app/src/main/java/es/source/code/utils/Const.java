@@ -72,6 +72,9 @@ public class Const {
         public static final int MSG_FOOD_GET_START = 1;
         public static final int MSG_FOOD_GET_STOP = 0;
         public static final int MSG_FOOD_GET_SUCCESS = 10;
+
+        // 邮件发送成功
+        public static final int MAIL_SEND = 10;
     }
 
     // sp的key
@@ -95,4 +98,6 @@ public class Const {
         public static final int LOGIN_SUCCESS = 1;
         public static final int LOGIN_FAILED = 0;
     }
+
+    public static final String BASE_URL = "http://192.168.209.1:8080/SCOS/";
 }

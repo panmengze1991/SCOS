@@ -1,10 +1,10 @@
 package es.source.code.model;
 
 /**
- * @ClassName: Event.java
- * @Description: 事件实体类
- * @author Daniel
- * @date 2017/10/18 15:33
+ * Author        Daniel
+ * Class:        Event
+ * Date:         2017/10/29 20:13
+ * Description:  事件实体类
  */
 public class Event<T> {
 
