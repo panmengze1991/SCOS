@@ -36,6 +36,7 @@
     <string name="dialog_login">登录中&#8230;</string>
     <string name="dialog_register">注册中&#8230;</string>
     <string name="toast_account_not_valid">您的输入内容不规范，请输入英文字母和数字组成的账户名和密码</string>
+    <string name="toast_request_failed">请求失败</string>
 
     <!-- 点餐页面 -->
     <string name="text_cold_food">冷菜</string>

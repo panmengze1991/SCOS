@@ -6,7 +6,7 @@ package es.source.code.model;
  * Date:         2017/11/3 16:06
  * Description:  登录参数
  */
-public class LoginParam {
+public class LoginParam extends Param {
     private String userName;
     private String password;
 

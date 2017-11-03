@@ -99,5 +99,11 @@ public class Const {
         public static final int LOGIN_FAILED = 0;
     }
 
-    public static final String BASE_URL = "http://192.168.209.1:8080/SCOS/";
+    // URL
+    public static class URL {
+        // 基本路径
+        public static final String BASE = "http://192.168.209.1:8080/SCOS/";
+        // 登录
+        public static final String LOGIN = "Login";
+    }
 }

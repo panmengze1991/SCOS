@@ -8,9 +8,13 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import com.google.gson.Gson;
 import es.source.code.R;
+import es.source.code.model.Param;
 
 import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -95,5 +99,106 @@ public class CommonUtil {
             Log.e(TAG, e.toString());
             return null;
         }
+    }
+
+    /**
+     * author:      Daniel
+     * description: 返回result的JsonString
+     */
+    public static <T extends Param> String requestPost(T param, String urlString) {
+        try {
+            String postUrl = Const.URL.BASE + urlString;
+
+            // 构造参数json字符串
+            String paramString = new Gson().toJson(param);
+            // 请求的参数转换为byte数组
+            byte[] postData = paramString.getBytes("utf8");
+
+            // 新建一个URL对象
+            URL url = new URL(postUrl);
+            // 打开一个HttpURLConnection连接
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            // 设置连接超时时间
+            urlConnection.setConnectTimeout(5 * 1000);
+            //设置从主机读取数据超时
+            urlConnection.setReadTimeout(5 * 1000);
+            // Post请求必须设置允许输出 默认false
+            urlConnection.setDoOutput(true);
+            //设置请求允许输入 默认是true
+            urlConnection.setDoInput(true);
+            // Post请求不能使用缓存
+            urlConnection.setUseCaches(false);
+            // 设置为Post请求
+            urlConnection.setRequestMethod("POST");
+            //设置本次连接是否自动处理重定向
+            urlConnection.setInstanceFollowRedirects(true);
+            // 配置请求Content-Type
+            urlConnection.setRequestProperty("Content-Type", "application/json");
+            // 开始连接
+            urlConnection.connect();
+            // 发送请求参数
+            DataOutputStream dos = new DataOutputStream(urlConnection.getOutputStream());
+            dos.write(postData);
+            dos.flush();
+            dos.close();
+            // 判断请求是否成功
+            if (urlConnection.getResponseCode() == 200) {
+                // 获取返回的数据
+                String result = CommonUtil.streamToString(urlConnection.getInputStream());
+                Log.d(TAG, "Post方式请求成功，result--->" + result);
+                return result;
+            } else {
+                Log.d(TAG, "Post方式请求失败");
+            }
+            // 关闭连接
+            urlConnection.disconnect();
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        return null;
+    }
+
+    /**
+     * author:      Daniel
+     * description: 返回result的JsonString
+     */
+    public static String requestGet(String param, String urlString) {
+        try {
+            String postUrl = Const.URL.BASE + urlString;
+
+            // 新建一个URL对象
+            URL url = new URL(postUrl);
+            // 打开一个HttpURLConnection连接
+            HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
+            // 设置连接主机超时时间
+            urlConn.setConnectTimeout(5 * 1000);
+            //设置从主机读取数据超时
+            urlConn.setReadTimeout(5 * 1000);
+            // 设置是否使用缓存  默认是true
+            urlConn.setUseCaches(true);
+            // 设置为Post请求
+            urlConn.setRequestMethod("GET");
+            //urlConn设置请求头信息
+            //设置请求中的媒体类型信息。
+            urlConn.setRequestProperty("Content-Type", "application/json");
+            //设置客户端与服务连接类型
+            urlConn.addRequestProperty("Connection", "Keep-Alive");
+            // 开始连接
+            urlConn.connect();
+            // 判断请求是否成功
+            if (urlConn.getResponseCode() == 200) {
+                // 获取返回的数据
+                String result = CommonUtil.streamToString(urlConn.getInputStream());
+                Log.d(TAG, "Get方式请求成功，result--->" + result);
+                return result;
+            } else {
+                Log.d(TAG, "Get方式请求失败");
+            }
+            // 关闭连接
+            urlConn.disconnect();
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        return null;
     }
 }
