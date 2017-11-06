@@ -13,6 +13,7 @@ import es.source.code.callback.SimpleObserver;
 import es.source.code.model.Event;
 import es.source.code.model.Function;
 import es.source.code.model.User;
+import es.source.code.service.UpdateService;
 import es.source.code.utils.Const;
 import es.source.code.utils.RxBus;
 import io.reactivex.Observable;
@@ -149,6 +150,8 @@ public class MainScreen extends BaseActivity {
                 startActivity(intent);
                 break;
             case FORM:
+                Intent serviceIntent = new Intent(mContext, UpdateService.class);
+                mContext.startService(serviceIntent);
                 break;
             case ACCOUNT:
                 intent = new Intent(mContext, LoginOrRegister.class);

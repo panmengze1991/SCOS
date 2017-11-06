@@ -88,5 +88,7 @@
     <!-- 更新通知 -->
     <string name="notify_new_food_title">新品上架</string>
     <string name="notify_new_food_content"><xliff:g>%1s</xliff:g> 价格：<xliff:g>%2s</xliff:g>元  热菜</string>
+    <string name="notify_new_food_content_server">菜品数量：<xliff:g>%1d</xliff:g></string>
+    <string name="notify_close">关闭</string>
 
 </resources>

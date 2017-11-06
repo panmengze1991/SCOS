@@ -13,10 +13,8 @@ import butterknife.OnClick;
 import com.google.gson.Gson;
 import es.source.code.App;
 import es.source.code.R;
-import es.source.code.callback.SimpleObserver;
 import es.source.code.model.LoginParam;
-import es.source.code.model.Param;
-import es.source.code.model.ResultBase;
+import es.source.code.model.ResultJson;
 import es.source.code.model.User;
 import es.source.code.utils.CommonUtil;
 import es.source.code.utils.Const;
@@ -118,20 +116,20 @@ public class LoginOrRegister extends BaseActivity {
         showProgress(R.string.dialog_login);
         if (startValid()) {
             Observable
-                    .create(new ObservableOnSubscribe<ResultBase>() {
+                    .create(new ObservableOnSubscribe<ResultJson>() {
                         @Override
-                        public void subscribe(@NonNull ObservableEmitter<ResultBase> e) throws Exception {
+                        public void subscribe(@NonNull ObservableEmitter<ResultJson> e) throws Exception {
                             String resultString = CommonUtil.requestPost(new LoginParam(name, password), Const.URL
                                     .LOGIN);
-                            ResultBase resultBase = new Gson().fromJson(resultString, ResultBase.class);
-                            e.onNext(resultBase);
+                            ResultJson resultJson = new Gson().fromJson(resultString, ResultJson.class);
+                            e.onNext(resultJson);
                         }
                     })
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Consumer<ResultBase>() {
+                    .subscribe(new Consumer<ResultJson>() {
                         @Override
-                        public void accept(ResultBase result) throws Exception {
+                        public void accept(ResultJson result) throws Exception {
                             dismissProgress();
                             if (result == null) {
                                 showToast(R.string.toast_request_failed);
@@ -140,14 +138,12 @@ public class LoginOrRegister extends BaseActivity {
                                 if (result.getRESULTCODE() == 1) {
                                     // 登陆成功
                                     User user = new User(etName.getText().toString().trim(), etPassword.getText()
-                                            .toString().trim(),
-                                            oldUser);
+                                            .toString().trim(), oldUser);
                                     App.getInstance().setUser(user).setLoginStatus(Const.SharedPreferenceValue
                                             .LOGIN_SUCCESS);
                                     Intent intent = new Intent(mContext, MainScreen.class);
                                     intent.putExtra(Const.IntentKey.LOGIN_STATUS, oldUser ? Const.IntentValue
-                                            .LOGIN_SUCCESS : Const
-                                            .IntentValue.REGISTER_SUCCESS);
+                                            .LOGIN_SUCCESS : Const.IntentValue.REGISTER_SUCCESS);
                                     setResult(Const.ActivityCode.LOGIN_OR_REGISTER, intent);
                                     finish();
                                 }
@@ -155,6 +151,7 @@ public class LoginOrRegister extends BaseActivity {
                         }
                     });
         } else {
+            dismissProgress();
             showToast(getString(R.string.toast_account_not_valid));
         }
     }
@@ -173,7 +170,7 @@ public class LoginOrRegister extends BaseActivity {
 
     /**
      * author:Daniel
-     * description: 使用rxJava完成校验过程
+     * description: 校验字符串是否符合正则表达式
      */
     private boolean startValid() {
         return pattern.matcher(etName.getText().toString().trim()).matches() && pattern.matcher(etPassword.getText()

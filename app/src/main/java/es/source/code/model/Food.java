@@ -26,6 +26,10 @@ public class Food implements Parcelable {
     // 图片资源ID;
     private int imgId;
 
+    public Food(){
+
+    }
+
     public Food(String foodName, int price, int store, boolean order, int imgId) {
         this.foodName = foodName;
         this.price = price;
