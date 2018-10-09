@@ -232,13 +232,13 @@ public class SCOSHelper extends BaseActivity {
         // SMTP发送服务器端口
         email.setSmtpPort(587);
         // 发件人在邮件服务器上的注册名称和密码
-        email.setAuthentication("452705789@qq.com", "mz05696680");
+        email.setAuthentication("xxx", "xxx");
         // 字符编码集的设置
         email.setCharset("gbk");
         // 收件人的邮箱
-        email.addTo("panmengze1991@163.com");
+        email.addTo("xxx");
         // 发送人的邮箱
-        email.setFrom("452705789@qq.com", "用户潘梦泽");
+        email.setFrom("xxx", "xxx");
         // 邮件标题
         email.setSubject("SCOS求助邮件");
         // 要发送的信息
